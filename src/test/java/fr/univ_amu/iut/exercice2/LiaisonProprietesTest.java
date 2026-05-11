@@ -131,6 +131,6 @@ class LiaisonProprietesTest {
     liaison.lierEtDelierProprietes();
     verify(out).println("Unbinding otherProperty from anIntProperty.");
     verify(out).println("Calling anIntProperty.set(8192).");
-    // La dernière ligne affiche toujours 7168, pas 8192
+    // La dernière ligne affiche toujours 7168, pas 8192.
   }
 }
