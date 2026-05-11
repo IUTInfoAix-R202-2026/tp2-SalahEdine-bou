@@ -76,9 +76,26 @@ public class ProprieteSimple {
   void ajouterEtRetirerInvalidationListener() {
     // TODO exercice 1 : ajouter un InvalidationListener et observer son
     // comportement.
-    //
     // 1. Afficher une ligne vide puis "Add invalidation listener."
-    //
+    System.out.println();
+    System.out.println("Add invalidation listener.");
+
+    InvalidationListener listener =
+        observable -> System.out.println("The observable has been invalidated.");
+
+    this.invalidationListener = listener;
+    anIntProperty.addListener(listener);
+
+    System.out.println("setValue() with 1024.");
+    anIntProperty.setValue(1024);
+    System.out.println("set() with 2105.");
+    anIntProperty.set(2105);
+    System.out.println("setValue() with 5012.");
+    anIntProperty.setValue(5012);
+    System.out.println("Remove invalidation listener.");
+    anIntProperty.removeListener(invalidationListener);
+    System.out.println("set() with 1024.");
+    anIntProperty.set(1024);
     // 2. Créer un InvalidationListener qui affiche
     // "The observable has been invalidated." et le stocker dans
     // le champ this.invalidationListener.
@@ -123,7 +140,33 @@ public class ProprieteSimple {
     // TODO exercice 1 : ajouter un ChangeListener et observer son comportement.
     //
     // 1. Afficher une ligne vide puis "Add change listener."
-    //
+    System.out.println();
+    System.out.println("Add change listener.");
+
+    ChangeListener<Number> listener =
+        (observable, oldValue, newValue) ->
+            System.out.println(
+                "The observableValue has changed: oldValue = "
+                    + oldValue
+                    + ", newValue = "
+                    + newValue);
+    this.changeListener = listener;
+    anIntProperty.addListener(listener);
+
+    System.out.println("setValue() with 1024.");
+    anIntProperty.setValue(1024);
+
+    System.out.println("set() with 2105.");
+    anIntProperty.set(2105);
+
+    System.out.println("setValue() with 5012.");
+    anIntProperty.setValue(5012);
+
+    System.out.println("Remove change listener.");
+    anIntProperty.removeListener(changeListener);
+
+    System.out.println("set() with 1024.");
+    anIntProperty.set(1024);
     // 2. Créer un ChangeListener<Number> qui affiche
     // "The observableValue has changed: oldValue = X, newValue = Y"
     // et le stocker dans this.changeListener.
